@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { site } from '../data/site';
 import { About } from './InstitutionalSections';
+import { ResponsiveImage } from './ResponsiveImage';
 
 export function Hero() {
   const { hero, assets, identity } = site;
@@ -26,14 +27,12 @@ export function Hero() {
             </h1>
             <div className="hero-portrait">
               {showPortrait && portrait.src ? (
-                <img
+                <ResponsiveImage
                   src={portrait.src}
                   alt={portrait.alt}
                   width={portrait.width}
                   height={portrait.height}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
+                  priority
                   onError={() => setPhotoFailed(true)}
                 />
               ) : (
