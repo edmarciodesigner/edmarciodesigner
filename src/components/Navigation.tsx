@@ -12,10 +12,25 @@ export function Navigation() {
 
     const desktop = window.matchMedia('(min-width: 960px)');
     const closeForDesktop = () => {
-      if (desktop.matches) menu.open = false;
+      if (!desktop.matches) return;
+
+      const focused = document.activeElement;
+      const restoreFocus = focused instanceof HTMLElement && menu.contains(focused);
+      const destination = focused instanceof HTMLAnchorElement ? focused.getAttribute('href') : null;
+      menu.open = false;
+
+      if (restoreFocus) {
+        const nav = menu.closest('nav');
+        const matchingLink = destination
+          ? Array.from(nav?.querySelectorAll<HTMLAnchorElement>('.brand-desktop-links a') ?? [])
+            .find((link) => link.getAttribute('href') === destination)
+          : undefined;
+        const fallback = nav?.querySelector<HTMLAnchorElement>('.brand-wordmark');
+        (matchingLink ?? fallback)?.focus({ preventScroll: true });
+      }
     };
     const closeFromOutside = (event: Event) => {
-      if (event.target instanceof Node && !menu.contains(event.target)) {
+      if (menu.open && event.target instanceof Node && !menu.contains(event.target)) {
         menu.open = false;
       }
     };
@@ -23,7 +38,7 @@ export function Navigation() {
       if (event.key === 'Escape' && menu.open) {
         event.preventDefault();
         menu.open = false;
-        menu.querySelector('summary')?.focus();
+        menu.querySelector('summary')?.focus({ preventScroll: true });
       }
     };
 
@@ -42,7 +57,12 @@ export function Navigation() {
   }, []);
 
   const closeMenu = () => {
-    if (menuRef.current) menuRef.current.open = false;
+    const menu = menuRef.current;
+    if (!menu) return;
+
+    const restoreFocus = menu.contains(document.activeElement);
+    menu.open = false;
+    if (restoreFocus) menu.querySelector('summary')?.focus({ preventScroll: true });
   };
 
   return (
@@ -63,8 +83,8 @@ export function Navigation() {
             {site.hero.navigationCta.label} <span aria-hidden="true">↗</span>
           </a>
           <details className="brand-menu" ref={menuRef}>
-            <summary>MENU</summary>
-            <div className="brand-mobile-links">
+            <summary aria-controls="brand-mobile-navigation">MENU</summary>
+            <div className="brand-mobile-links" id="brand-mobile-navigation">
               {navigation.map((item) => (
                 <a key={item.href} href={sectionHref(item.href)} onClick={closeMenu}>{item.label}</a>
               ))}
