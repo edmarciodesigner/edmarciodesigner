@@ -769,3 +769,9 @@
     transform: none;
   }
 }
+
+/* Retrato real fornecido pelo proprietário: preservar a imagem sem filtros. */
+.hero-canvas .hero-portrait { left: 25%; width: 50%; bottom: -1%; height: 101%; }
+.hero-canvas .hero-portrait img { object-fit: contain; object-position: center bottom; }
+@media (max-width: 959px) { .hero-canvas .hero-portrait { left: 18%; width: 64%; height: 94%; } }
+@media (max-width: 640px) { .hero-canvas .hero-portrait { left: 8%; width: 84%; height: 85%; } }
