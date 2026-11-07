@@ -142,10 +142,10 @@ export const site: SiteContent = {
     portrait: {
       // A camada original foi identificada no Figma. Não persistir URLs temporárias
       // de exportação nem substituir a fotografia por imagens de outras pessoas.
-      src: null,
+      src: './assets/images/edmarcio-oliveira-retrato.webp',
       alt: 'Edmarcio Oliveira em sua fotografia original, usando óculos e roupa preta.',
       width: 536,
-      height: 495,
+      height: 904,
       source: 'https://www.figma.com/design/lqu0L4HSdTn6OPZdVxOOcr/CONTE%C3%9ADOS-EDMARCIO-2025?node-id=319-874',
       sourceNode: '319:874',
       pendingLabel: 'Fotografia original · material pendente',
