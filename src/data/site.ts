@@ -142,7 +142,7 @@ export const site: SiteContent = {
     portrait: {
       // A camada original foi identificada no Figma. Não persistir URLs temporárias
       // de exportação nem substituir a fotografia por imagens de outras pessoas.
-      src: './assets/images/edmarcio-oliveira-retrato.webp',
+      src: './assets/images/edmarcio-oliveira-original-hq.png',
       alt: 'Edmarcio Oliveira em sua fotografia original, usando óculos e roupa preta.',
       width: 536,
       height: 904,
