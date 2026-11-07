@@ -3,6 +3,8 @@ import { navigation, site } from '../data/site';
 
 export function Navigation() {
   const menuRef = useRef<HTMLDetailsElement>(null);
+  const isProjectPage = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('projeto');
+  const sectionHref = (href: string) => isProjectPage ? `./${href}` : href;
 
   useEffect(() => {
     const menu = menuRef.current;
@@ -48,27 +50,27 @@ export function Navigation() {
       <a className="skip brand-skip" href="#conteudo">Pular para o conteúdo</a>
       <header className="brand-header">
         <nav className="wrap brand-nav" aria-label="Menu principal">
-          <a className="brand-wordmark" href="#home" aria-label={`${site.name}, início`}>
+          <a className="brand-wordmark" href={sectionHref('#home')} aria-label={`${site.name}, início`}>
             {site.identity.wordmark}
             <span>{site.identity.discipline}</span>
           </a>
           <div className="brand-desktop-links">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
+              <a key={item.href} href={sectionHref(item.href)}>{item.label}</a>
             ))}
           </div>
-          <a className="brand-action brand-nav-cta" href={site.hero.navigationCta.href}>
+          <a className="brand-action brand-nav-cta" href={sectionHref(site.hero.navigationCta.href)}>
             {site.hero.navigationCta.label} <span aria-hidden="true">↗</span>
           </a>
           <details className="brand-menu" ref={menuRef}>
             <summary>MENU</summary>
             <div className="brand-mobile-links">
               {navigation.map((item) => (
-                <a key={item.href} href={item.href} onClick={closeMenu}>{item.label}</a>
+                <a key={item.href} href={sectionHref(item.href)} onClick={closeMenu}>{item.label}</a>
               ))}
               <a
                 className="brand-action brand-nav-cta"
-                href={site.hero.navigationCta.href}
+                href={sectionHref(site.hero.navigationCta.href)}
                 onClick={closeMenu}
               >
                 {site.hero.navigationCta.label} <span aria-hidden="true">↗</span>
