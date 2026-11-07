@@ -1,6 +1,7 @@
 /* Etapa 5: galeria e páginas de projeto, sem dependências de build. */
 .selected-works,
 .project-detail {
+  min-width: 0;
   font-family: var(--brand-font, Arial, Helvetica, sans-serif);
   color: var(--ink, #171714);
 }
@@ -9,6 +10,10 @@
 .project-detail-title {
   font-family: var(--brand-display, 'Arial Black', Arial, sans-serif);
   font-weight: 900;
+}
+
+.selected-works h2 {
+  overflow-wrap: break-word;
 }
 
 .selected-works .section-head > div,
@@ -24,6 +29,7 @@
 .selected-work-intro > p {
   margin: 0;
   font-size: 18px;
+  overflow-wrap: anywhere;
 }
 
 .selected-work-intro .selected-work-note {
@@ -41,6 +47,7 @@
 
 .selected-work-filters button,
 .selected-work-reset {
+  min-width: 0;
   min-height: 44px;
   max-width: 100%;
   padding: 11px 17px;
@@ -51,7 +58,9 @@
   font: inherit;
   font-size: 13px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
   cursor: pointer;
+  touch-action: manipulation;
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
@@ -61,11 +70,35 @@
   color: var(--brand-white, #ffffff);
 }
 
+.selected-work-filters button:disabled,
+.selected-work-reset:disabled {
+  opacity: 1;
+  border-color: #77776d;
+  background: transparent;
+  color: #55554f;
+  cursor: not-allowed;
+}
+
+.selected-work-filters button[aria-pressed="true"]:disabled {
+  background: #55554f;
+  color: var(--brand-white, #ffffff);
+}
+
+.selected-work-filters button:not(:disabled):active,
+.selected-work-reset:not(:disabled):active {
+  border-color: var(--brand-ink, #222222);
+  background: var(--brand-ink, #222222);
+  color: var(--brand-white, #ffffff);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .selected-work-feedback {
   min-height: 24px;
   margin: 0 0 28px;
   color: #55554f;
   font-size: 13px;
+  overflow-wrap: anywhere;
 }
 
 .selected-work-grid {
@@ -79,6 +112,7 @@
   display: block;
   min-width: 0;
   color: inherit;
+  scroll-margin-block: 24px;
   animation: selected-work-in 450ms ease both;
 }
 
@@ -97,6 +131,11 @@
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: .7px;
+}
+
+.selected-work-card-top > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .selected-work-visual {
@@ -178,6 +217,7 @@
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: .7px;
+  overflow-wrap: anywhere;
 }
 
 .selected-work-caption h3 {
@@ -192,6 +232,7 @@
   margin: 0;
   color: #55554f;
   font-size: 13px;
+  overflow-wrap: anywhere;
 }
 
 .selected-work-link {
@@ -221,6 +262,7 @@
 .selected-work-empty h3 {
   margin: 0 0 12px;
   font-size: 24px;
+  overflow-wrap: anywhere;
 }
 
 .selected-work-empty p {
@@ -235,7 +277,14 @@
   outline-offset: 5px;
 }
 
-.selected-work-card:focus-visible .selected-work-link {
+/* O card inteiro já é um link: a mesma ação está disponível com Tab e Enter. */
+.selected-work-card:focus-visible .selected-work-link,
+.selected-work-card:focus-within .selected-work-link {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.selected-work-card:active .selected-work-link {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
@@ -256,6 +305,7 @@
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: .6px;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-header {
@@ -276,6 +326,7 @@
   margin: 0 0 28px;
   color: #55554f;
   font-size: 18px;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-meta {
@@ -286,7 +337,9 @@
 }
 
 .project-detail-meta > div {
+  min-width: 0;
   max-width: 48ch;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-meta dt {
@@ -305,6 +358,7 @@
 
 .project-detail-demo,
 .project-detail-image {
+  min-width: 0;
   margin: 36px 0 0;
 }
 
@@ -323,6 +377,7 @@
   color: #55554f;
   font-size: 13px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-image img {
@@ -348,10 +403,12 @@
   margin: 0;
   font-size: clamp(26px, 3vw, 40px);
   letter-spacing: -1px;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-section p,
 .project-detail-section ul {
+  min-width: 0;
   max-width: 65ch;
   margin: 0;
   line-height: 1.8;
@@ -369,6 +426,7 @@
   margin: 0 0 18px;
   font-size: 28px;
   letter-spacing: -1px;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-pending p {
@@ -386,6 +444,7 @@
   margin: 22px 0 0;
   font-size: 13px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .project-detail-back-bottom {
@@ -400,8 +459,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .selected-work-filters button:hover,
-  .selected-work-reset:hover {
+  .selected-work-filters button:not(:disabled):hover,
+  .selected-work-reset:not(:disabled):hover {
     background: var(--brand-ink, #222222);
     border-color: var(--brand-ink, #222222);
     color: var(--brand-white, #ffffff);
@@ -427,7 +486,7 @@
 }
 
 @keyframes selected-work-in {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 1; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -505,6 +564,40 @@
 
   .project-detail-demo .selected-work-art strong {
     font-size: clamp(42px, 11vw, 70px);
+  }
+}
+
+/* As palavras dos placeholders acompanham a largura real de cada card,
+   inclusive no segundo card, mais estreito no grid assimétrico. */
+@supports (font-size: 1cqi) {
+  .selected-work-visual {
+    container-type: inline-size;
+  }
+
+  .selected-work-art strong {
+    font-size: clamp(24px, 12cqi, 78px);
+  }
+
+  .project-detail-demo .selected-work-art strong {
+    font-size: clamp(24px, 12cqi, 120px);
+  }
+}
+
+@media (forced-colors: active) {
+  .selected-work-filters button,
+  .selected-work-reset {
+    border-color: ButtonText;
+  }
+
+  .selected-work-filters button[aria-pressed="true"] {
+    border-color: Highlight;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .selected-works :focus-visible,
+  .project-detail :focus-visible {
+    outline-color: Highlight;
   }
 }
 
