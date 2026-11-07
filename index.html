@@ -3,9 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Edmarcio Oliveira — designer gráfico em Itaboraí. Identidade visual, conteúdo e landing pages para empresas que querem uma marca com personalidade.">
+<meta name="description" content="Portfólio de Edmarcio Oliveira, designer gráfico em Itaboraí, RJ. Identidade visual, branding e direção de arte para posicionar marcas.">
 <meta name="theme-color" content="#080808">
-<title>Edmarcio Oliveira · Identidade visual e design gráfico</title>
+<title>Edmarcio Oliveira · Designer gráfico em Itaboraí</title>
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Edmarcio Designer">
+<meta property="og:title" content="Edmarcio Oliveira · Designer gráfico em Itaboraí">
+<meta property="og:description" content="Portfólio de Edmarcio Oliveira, designer gráfico em Itaboraí, RJ. Identidade visual, branding e direção de arte para posicionar marcas.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Edmarcio Oliveira · Designer gráfico em Itaboraí">
+<meta name="twitter:description" content="Portfólio de Edmarcio Oliveira, designer gráfico em Itaboraí, RJ. Identidade visual, branding e direção de arte para posicionar marcas.">
+<!-- canonical, og:url e imagem social dependem do endereço final e de um asset aprovado. -->
 <link rel="stylesheet" href="./src/styles/global.css">
 <link rel="stylesheet" href="./src/styles/brand.css">
 <link rel="stylesheet" href="./src/styles/projects.css">
@@ -358,6 +367,18 @@
     }
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription && description) metaDescription.content = description.textContent || '';
+    document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]').forEach((meta) => {
+      meta.setAttribute('content', document.title);
+    });
+    document.querySelectorAll('meta[property="og:description"], meta[name="twitter:description"]').forEach((meta) => {
+      meta.setAttribute('content', description?.textContent || '');
+    });
+    // A versão estática contém apenas demonstrações; não indexar seus detalhes.
+    const robots = document.createElement('meta');
+    robots.name = 'robots';
+    robots.content = 'noindex, follow';
+    document.head.appendChild(robots);
+    cleanups.push(() => robots.remove());
     title?.focus({ preventScroll: true });
   }
 
