@@ -1,4 +1,4 @@
-/* Etapa 3: estilos isolados da navegação e da hero.
+/* Estilos da navegação e da hero.
    As famílias proprietárias não são declaradas sem arquivos e licença web.
    A composição usa apenas alternativas instaladas no dispositivo. */
 :root {
@@ -12,6 +12,7 @@
 
 .brand-header,
 .brand-stage {
+  min-width: 0;
   font-family: var(--brand-font);
   background: var(--brand-black);
   color: var(--brand-white);
@@ -25,6 +26,7 @@
 
 .brand-header .brand-nav {
   width: min(1440px, calc(100% - 48px));
+  min-width: 0;
   min-height: 96px;
   margin-inline: auto;
   padding: 18px 0;
@@ -37,7 +39,9 @@
 
 .brand-wordmark {
   flex-shrink: 0;
+  min-height: 44px;
   display: grid;
+  align-content: center;
   gap: 3px;
   font-size: 20px;
   font-weight: 900;
@@ -53,6 +57,7 @@
 }
 
 .brand-desktop-links {
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,6 +65,9 @@
 }
 
 .brand-desktop-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   padding: 13px 0;
   font-size: 11px;
   font-weight: 700;
@@ -69,6 +77,8 @@
 }
 
 .brand-action {
+  min-width: 0;
+  max-width: 100%;
   min-height: 48px;
   display: inline-flex;
   align-items: center;
@@ -85,6 +95,7 @@
   line-height: 1.35;
   letter-spacing: .6px;
   text-align: center;
+  overflow-wrap: anywhere;
   transition: transform 200ms ease, background-color 200ms ease, color 200ms ease;
 }
 
@@ -107,26 +118,40 @@
   flex-shrink: 0;
 }
 
-.brand-header :focus-visible {
+.brand-header :focus-visible,
+.brand-stage :focus-visible {
   outline: 3px solid var(--brand-cyan);
   outline-offset: 5px;
 }
 
-.brand-stage :focus-visible {
-  outline: 3px solid var(--brand-ink);
-  outline-offset: 5px;
+.hero-panel :focus-visible {
+  outline-color: var(--brand-ink);
+}
+
+.brand-desktop-links a:focus-visible,
+.brand-mobile-links > a:not(.brand-action):focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 7px;
 }
 
 .brand-skip {
   z-index: 100;
+  min-height: 44px;
+  max-width: calc(100% - 20px);
   background: var(--brand-cyan);
   color: var(--brand-ink);
   border-radius: 8px;
 }
 
+.brand-skip:focus-visible {
+  outline: 3px solid var(--brand-white);
+  outline-offset: 3px;
+}
+
 .brand-menu {
   display: none;
   position: relative;
+  flex-shrink: 0;
   margin: 0;
   padding: 0;
   border: 0;
@@ -139,12 +164,13 @@
   justify-content: center;
   gap: 14px;
   padding: 10px 15px;
-  border: 1px solid #666;
+  border: 1px solid #777;
   border-radius: 999px;
   color: var(--brand-white);
   font-size: 11px;
   letter-spacing: 1px;
   list-style: none;
+  touch-action: manipulation;
 }
 
 .brand-menu summary::-webkit-details-marker {
@@ -162,16 +188,24 @@
   content: '−';
 }
 
+.brand-menu[open] summary {
+  border-color: var(--brand-cyan);
+}
+
 .brand-menu .brand-mobile-links {
   position: absolute;
   top: calc(100% + 14px);
   right: 0;
   width: min(340px, calc(100vw - 48px));
   min-height: 0;
+  max-height: calc(100vh - 120px);
+  max-height: calc(100dvh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   display: grid;
   gap: 0;
   padding: 14px 22px 22px;
-  border: 1px solid #555;
+  border: 1px solid #777;
   border-radius: 20px;
   background: var(--brand-ink);
   color: var(--brand-white);
@@ -179,14 +213,16 @@
 }
 
 .brand-mobile-links > a:not(.brand-action) {
+  min-width: 0;
   min-height: 48px;
   display: flex;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #777;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
+  overflow-wrap: anywhere;
 }
 
 .brand-mobile-links .brand-action {
@@ -199,12 +235,14 @@
 
 .hero-shell {
   width: min(1440px, calc(100% - 48px));
+  min-width: 0;
   margin-inline: auto;
 }
 
 .hero-panel {
   position: relative;
   isolation: isolate;
+  min-width: 0;
   overflow: hidden;
   padding: clamp(24px, 3.5vw, 52px);
   border-radius: 32px;
@@ -234,6 +272,11 @@
   text-transform: uppercase;
 }
 
+.hero-topline > span:not(.hero-seal) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .hero-seal {
   width: 58px;
   height: 58px;
@@ -251,6 +294,7 @@
 .hero-canvas {
   position: relative;
   isolation: isolate;
+  min-width: 0;
   min-height: clamp(380px, 43vw, 620px);
 }
 
@@ -266,6 +310,7 @@
 
 .hero-title {
   position: relative;
+  min-width: 0;
   min-height: inherit;
   display: flex;
   flex-direction: column;
@@ -285,6 +330,7 @@
 .hero-title-line {
   position: relative;
   z-index: 1;
+  max-width: 100%;
   align-self: flex-start;
   animation: brand-title-in 650ms cubic-bezier(.2, .7, .2, 1) both;
 }
@@ -298,9 +344,9 @@
 .hero-portrait {
   position: absolute;
   z-index: 2;
-  left: 24%;
+  left: 20%;
   bottom: 0;
-  width: 52%;
+  width: 60%;
   height: 94%;
   margin: 0;
   pointer-events: none;
@@ -337,15 +383,18 @@
 }
 
 .hero-portrait-pending span {
+  max-width: 100%;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
+  overflow-wrap: anywhere;
 }
 
 .hero-portrait-pending small {
   max-width: 22ch;
   font-size: 12px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .hero-scroll {
@@ -353,6 +402,8 @@
   top: 41%;
   right: -22px;
   z-index: 4;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -374,12 +425,16 @@
   position: relative;
   z-index: 5;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: start;
   gap: clamp(28px, 5vw, 80px);
   margin-top: 30px;
   padding-top: 28px;
   border-top: 1px solid rgb(34 34 34 / 40%);
+}
+
+.hero-information > div {
+  min-width: 0;
 }
 
 .hero-headline {
@@ -390,6 +445,7 @@
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -1.5px;
+  overflow-wrap: break-word;
 }
 
 .hero-complementary {
@@ -397,6 +453,7 @@
   margin: 0;
   font-size: 12px;
   line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
 .hero-description {
@@ -405,6 +462,7 @@
   color: var(--brand-ink);
   font-size: 16px;
   line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
 .hero-actions {
@@ -427,14 +485,20 @@
   letter-spacing: 1.5px;
 }
 
+.hero-project-link > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .hero-project-link > span:last-child {
+  flex-shrink: 0;
   font-size: 23px;
   letter-spacing: 0;
 }
 
 .hero-about {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   gap: 40px;
   align-items: start;
   padding: 36px 8px 12px;
@@ -479,6 +543,12 @@
     color: var(--brand-white);
   }
 
+  .brand-mobile-links > a:not(.brand-action):hover {
+    color: var(--brand-cyan);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+
   .hero-project-link:hover,
   .hero-scroll:hover {
     text-decoration: underline;
@@ -491,12 +561,12 @@
 }
 
 @keyframes brand-title-in {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 1; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes brand-menu-in {
-  from { opacity: 0; transform: translateY(-6px); }
+  from { opacity: 1; transform: translateY(-6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -518,8 +588,19 @@
     font-size: clamp(56px, 12vw, 118px);
   }
 
+  .hero-portrait {
+    left: 12%;
+    width: 76%;
+    height: 90%;
+  }
+
+  .hero-canvas-pending .hero-portrait {
+    left: 28%;
+    width: 44%;
+  }
+
   .hero-information {
-    grid-template-columns: .9fr 1.1fr;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     gap: 28px;
   }
 
@@ -580,9 +661,9 @@
   }
 
   .hero-portrait {
-    left: 8%;
-    width: 84%;
-    height: 88%;
+    left: 4%;
+    width: 92%;
+    height: 86%;
   }
 
   .hero-canvas-pending .hero-portrait {
@@ -608,7 +689,7 @@
   }
 
   .hero-information {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 24px;
     margin-top: 12px;
     padding-top: 24px;
@@ -638,13 +719,39 @@
   }
 
   .hero-about {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 14px;
     padding: 30px 8px 6px;
   }
 
   .hero-about-text {
     font-size: 14px;
+  }
+}
+
+/* Dimensiona as letras pela largura útil, já descontados padding e margens.
+   O dimensionamento por viewport acima permanece como fallback. */
+@supports (font-size: 1cqi) {
+  .hero-canvas {
+    container-type: inline-size;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 17.5cqi, 184px);
+  }
+}
+
+@media (forced-colors: active) {
+  .brand-menu summary,
+  .brand-menu .brand-mobile-links,
+  .brand-action {
+    border-color: ButtonText;
+  }
+
+  .brand-header :focus-visible,
+  .brand-stage :focus-visible,
+  .brand-skip:focus-visible {
+    outline-color: Highlight;
   }
 }
 
