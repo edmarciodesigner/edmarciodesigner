@@ -33,6 +33,11 @@ jobs:
           cp index.html _site/index.html
           cp -R src _site/src
           touch _site/.nojekyll
+      - name: Verificar arquivos essenciais do portfólio
+        run: |
+          test -f _site/index.html
+          test -f _site/src/styles/global.css
+          test -f _site/src/styles/brand.css
       - name: Enviar arquivos do site
         uses: actions/upload-pages-artifact@v4
         with:
