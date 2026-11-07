@@ -7,6 +7,7 @@ import {
   type Project,
   type ProjectCategoryId,
 } from '../data/projects';
+import { ResponsiveImage } from './ResponsiveImage';
 
 export function ProjectVisual({ project }: { project: Project }) {
   const [failedSource, setFailedSource] = useState<string | null>(null);
@@ -17,13 +18,13 @@ export function ProjectVisual({ project }: { project: Project }) {
   return (
     <div className={`selected-work-visual selected-work-visual--${tone}`}>
       {showCover && cover ? (
-        <img
+        <ResponsiveImage
           src={cover.src}
           alt={cover.alt}
           width={cover.width}
           height={cover.height}
-          loading="lazy"
-          decoding="async"
+          srcSet={cover.srcSet}
+          sizes={cover.sizes ?? '(max-width: 640px) calc(100vw - 24px), (max-width: 760px) calc(100vw - 48px), (max-width: 1328px) 60vw, 747px'}
           onError={() => setFailedSource(cover.src)}
         />
       ) : (
