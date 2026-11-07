@@ -1,0 +1,10 @@
+/*
+ * Preparação para Tailwind CSS 4.
+ * Importar na entrada React somente após instalar os pacotes e configurar
+ * @tailwindcss/vite. O Preflight foi omitido para preservar o CSS existente.
+ * Esta folha não é carregada pela versão estática.
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@source "../";
