@@ -69,8 +69,9 @@ export function useVisualMotion(rootRef: RefObject<HTMLElement | null>): void {
           }
 
           try {
+            // Preserva o contraste dos textos durante toda a entrada.
             const animation = element.animate([
-              { opacity: 0.35, transform: 'translate3d(0, 18px, 0)' },
+              { opacity: 1, transform: 'translate3d(0, 18px, 0)' },
               { opacity: 1, transform: 'translate3d(0, 0, 0)' },
             ], {
               duration: 440,
