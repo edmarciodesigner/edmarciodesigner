@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { SiteLayout } from '../components/SiteLayout';
+import { Hero } from '../components/Hero';
 import {
   processSteps,
   projectDemonstrations,
@@ -11,23 +12,7 @@ import {
 function HeroSection() {
   return (
     <>
-      <div className="wrap hero">
-        <div>
-          <div className="tag">{site.locationLabel}</div>
-          <h1>Sua marca<br />merece ser<br /><em>lembrada.</em></h1>
-          <p className="intro">{site.introduction}</p>
-          <a className="btn" href="#contato">
-            Vamos criar seu próximo projeto <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div
-          className="art"
-          role="img"
-          aria-label="Composição gráfica abstrata em laranja, preto e creme"
-        >
-          <span className="art-label">ESTRATÉGIA + EXPRESSÃO VISUAL</span>
-        </div>
-      </div>
+      <Hero />
       <div className="strip" aria-label="Áreas de atuação">
         {specialties.map((specialty) => <span key={specialty}>{specialty}</span>)}
       </div>
