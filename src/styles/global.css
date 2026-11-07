@@ -428,3 +428,115 @@
     transform: none;
   }
 }
+
+/* Etapa 6: movimento progressivo sem alterar a composição ou ocultar conteúdo. */
+/* A entrada dos cards agora acontece quando estão visíveis. */
+#conteudo .selected-work-card {
+  animation: none;
+}
+
+/* Reutiliza a introdução tipográfica existente, com duração breve. */
+#conteudo .hero-title-line {
+  animation-duration: 560ms;
+}
+
+#conteudo .hero-title-line:last-child {
+  animation-delay: 80ms;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 960px) and (hover: hover) and (pointer: fine) {
+  #conteudo[data-visual-motion="js"] .hero-portrait {
+    translate: 0 var(--visual-parallax, 0px);
+  }
+
+  #conteudo[data-visual-motion="js"] .hero-title {
+    translate: 0 calc(var(--visual-parallax, 0px) * -.35);
+  }
+}
+
+/* Na versão sem React, usar a linha do tempo nativa quando disponível.
+   Sem suporte, os elementos conservam seus estilos e sua opacidade normal. */
+@supports (animation-timeline: view()) and (animation-range: entry 0% entry 80%) {
+  @media (prefers-reduced-motion: no-preference) {
+    #conteudo:not([data-visual-motion="js"]) :is(
+      .institutional-about-grid > div,
+      .institutional-about-portrait,
+      .section-head,
+      .institutional-service-row,
+      .selected-work-card,
+      .process > div,
+      .steps > li,
+      .institutional-collaborations .institutional-eyebrow,
+      .institutional-collaborations h2,
+      .institutional-empty,
+      .institutional-logo-list > li,
+      .contact-inner > div,
+      .institutional-channels > li,
+      .project-detail-gallery > figure,
+      .project-detail-demo,
+      .project-detail-section,
+      .project-detail-pending
+    ) {
+      animation: visual-scroll-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+
+    /* O foco do teclado sempre apresenta o elemento em seu estado final. */
+    #conteudo:not([data-visual-motion="js"]) :is(
+      .selected-work-card,
+      .contact-inner > div,
+      .institutional-channels > li
+    ):is(:focus-visible, :focus-within) {
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) and (min-width: 960px) and (hover: hover) and (pointer: fine) {
+    #conteudo:not([data-visual-motion="js"]) .hero-canvas {
+      view-timeline-name: --visual-hero;
+      view-timeline-axis: block;
+    }
+
+    #conteudo:not([data-visual-motion="js"]) .hero-portrait {
+      animation: visual-portrait-parallax linear both;
+      animation-timeline: --visual-hero;
+      animation-range: cover 0% cover 100%;
+    }
+
+    #conteudo:not([data-visual-motion="js"]) .hero-title {
+      animation: visual-title-parallax linear both;
+      animation-timeline: --visual-hero;
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes visual-scroll-reveal {
+  from { opacity: 1; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes visual-portrait-parallax {
+  from { translate: 0 -12px; }
+  to { translate: 0 12px; }
+}
+
+@keyframes visual-title-parallax {
+  from { translate: 0 4px; }
+  to { translate: 0 -4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #conteudo .hero-title-line,
+  #conteudo .selected-work-card,
+  #conteudo .hero-title,
+  #conteudo .hero-portrait {
+    animation: none !important;
+  }
+
+  #conteudo .hero-title,
+  #conteudo .hero-portrait {
+    translate: none !important;
+  }
+}
