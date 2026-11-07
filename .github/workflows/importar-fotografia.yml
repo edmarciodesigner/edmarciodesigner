@@ -1,0 +1,45 @@
+name: Importar fotografia de alta qualidade
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/importar-fotografia.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  importar:
+    name: Copiar retrato do portfólio de origem
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Recuperar arquivo PNG de alta qualidade
+        run: |
+          mkdir -p assets/images
+          curl --fail --location --retry 3 --silent --show-error \
+            "https://raw.githubusercontent.com/edmarciodesigner/ed-visual-arts/main/public/images/edmarcio-foto-figma.png" \
+            -o assets/images/edmarcio-oliveira-original.png
+      - name: Validar arquivo original e dimensões
+        run: |
+          python3 - <<'PY'
+          import os, struct
+          p = 'assets/images/edmarcio-oliveira-original.png'
+          data = open(p, 'rb').read(32)
+          assert data[:8] == b'\x89PNG\r\n\x1a\n', 'Imagem PNG invalida'
+          w,h = struct.unpack('>II', data[16:24])
+          print(f'Retrato: {w}x{h}, {os.path.getsize(p)} bytes')
+          assert w >= 500 and h >= 400 and os.path.getsize(p) > 100_000, 'Imagem pequena ou incompleta'
+          PY
+      - name: Salvar arquivo no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/edmarcio-oliveira-original.png
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: importar retrato original em qualidade maior"
+            git push origin main
+          fi
