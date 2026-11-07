@@ -14,15 +14,49 @@ export interface PortraitAsset {
   readonly pendingLabel: string;
 }
 
+export interface ContactChannel {
+  readonly id: 'whatsapp' | 'instagram' | 'email';
+  readonly label: string;
+  /** URL real do canal; usar mailto: para e-mail. null mantém o estado não informado. */
+  readonly href: string | null;
+}
+
+export interface CollaborationLogo {
+  readonly id: string;
+  readonly name: string;
+  readonly src: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+}
+
 export interface SiteContent {
   readonly name: string;
   readonly locationLabel: string;
   readonly introduction: string;
+  readonly about: {
+    readonly sectionLabel: string;
+    readonly title: string;
+    readonly paragraphs: readonly string[];
+    readonly specialtiesLabel: string;
+  };
   readonly contact: {
     readonly href: string;
     readonly label: string;
+    readonly headline: string;
     readonly description: string;
     readonly nextSteps: string;
+    readonly channels: readonly ContactChannel[];
+  };
+  readonly collaborations: {
+    readonly sectionLabel: string;
+    readonly title: string;
+    readonly emptyTitle: string;
+    readonly emptyDescription: string;
+    readonly logos: readonly CollaborationLogo[];
+  };
+  readonly footer: {
+    readonly discipline: string;
   };
   readonly identity: {
     readonly wordmark: string;
@@ -45,6 +79,8 @@ export interface SiteContent {
   };
   readonly assets: {
     readonly portrait: PortraitAsset;
+    /** Fotografia adicional somente após validação da imagem original e de sua URL permanente. */
+    readonly aboutPortrait: PortraitAsset | null;
   };
 }
 
@@ -52,11 +88,36 @@ export const site: SiteContent = {
   name: 'Edmarcio Oliveira',
   locationLabel: 'Designer gráfico · Itaboraí, RJ',
   introduction: 'Sou Edmarcio Oliveira. Crio identidades visuais, conteúdo e landing pages para empresas que querem se apresentar com clareza e personalidade.',
+  about: {
+    sectionLabel: 'SOBRE / EDMARCIO OLIVEIRA',
+    title: 'QUEM É EDMARCIO OLIVEIRA?',
+    paragraphs: [
+      'Sou designer especializado na criação de identidades visuais estratégicas, conteúdos para redes sociais e projetos visuais que fortalecem o posicionamento de marcas.',
+      'Meu trabalho conecta criatividade, estratégia e comunicação para transformar negócios em referências visuais fortes, reconhecidas e memoráveis.',
+    ],
+    specialtiesLabel: 'ESPECIALIDADES',
+  },
   contact: {
     href: 'https://edmarciodesigner.com.br/',
-    label: 'Acessar meu site e conversar ↗',
-    description: 'Precisa de uma identidade visual, conteúdo ou uma landing page? Acesse meu site e use o canal de contato disponível para contar sua ideia.',
-    nextSteps: 'Atendimento a empresas de Itaboraí e região. Para começar, envie uma descrição do projeto, suas referências e o prazo desejado pelo canal de contato disponível no site.',
+    label: 'INICIAR UM PROJETO',
+    headline: 'VAMOS CRIAR ALGO EXTRAORDINÁRIO?',
+    description: 'Tem uma ideia, projeto ou marca que precisa ganhar força? Vamos conversar.',
+    nextSteps: 'Atendimento a empresas de Itaboraí e região. Para começar, envie uma descrição do projeto, suas referências e o prazo desejado pelo canal de contato de sua preferência.',
+    channels: [
+      { id: 'whatsapp', label: 'WhatsApp', href: null },
+      { id: 'instagram', label: 'Instagram', href: null },
+      { id: 'email', label: 'E-mail profissional', href: null },
+    ],
+  },
+  collaborations: {
+    sectionLabel: 'MARCAS / COLABORAÇÕES',
+    title: 'MARCAS E COLABORAÇÕES.',
+    emptyTitle: 'Logotipos ainda não disponíveis.',
+    emptyDescription: 'Este espaço receberá as marcas e colaborações após a validação e inclusão dos logotipos originais.',
+    logos: [],
+  },
+  footer: {
+    discipline: 'Direção de Arte • Identidade Visual • Design Estratégico',
   },
   identity: {
     wordmark: 'EDMARCIO',
@@ -89,6 +150,7 @@ export const site: SiteContent = {
       sourceNode: '319:874',
       pendingLabel: 'Fotografia original · material pendente',
     },
+    aboutPortrait: null,
   },
 };
 
@@ -113,18 +175,33 @@ export const specialties = [
 export const services = [
   {
     number: '01',
-    title: 'Identidade visual',
+    title: 'Identidade Visual',
     description: 'Logo, cores, tipografia e aplicações para dar consistência e personalidade à sua marca.',
   },
   {
     number: '02',
-    title: 'Conteúdo & social',
-    description: 'Direção visual e peças para apresentar seus serviços, explicar sua oferta e conversar com seu público.',
+    title: 'Branding e Posicionamento',
+    description: 'Estratégia e direção visual para comunicar a essência da marca e definir como ela se apresenta ao público.',
   },
   {
     number: '03',
-    title: 'Landing pages',
+    title: 'Social Media Design',
+    description: 'Direção visual e peças para apresentar seus serviços, explicar sua oferta e conversar com seu público.',
+  },
+  {
+    number: '04',
+    title: 'Direção de Arte',
+    description: 'Conceitos e orientação estética para conectar imagens, tipografia e composição em uma linguagem consistente.',
+  },
+  {
+    number: '05',
+    title: 'Websites e Landing Pages',
     description: 'Páginas objetivas para organizar sua mensagem, destacar sua oferta e facilitar o contato.',
+  },
+  {
+    number: '06',
+    title: 'Campanhas e Comunicação Visual',
+    description: 'Conceitos e peças integradas para comunicar mensagens com clareza nos diferentes pontos de contato da marca.',
   },
 ] as const;
 
