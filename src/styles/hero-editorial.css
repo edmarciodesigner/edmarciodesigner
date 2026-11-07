@@ -1,0 +1,225 @@
+/* Hero editorial isolada para evitar conflito com estilos legados.
+   Referência: EDMARCIO / retrato / DESIGNER em fundo branco e azul. */
+.brand-header {
+  background: #fff;
+  color: #202020;
+  border-bottom: 1px solid #eeeeee;
+}
+.brand-header .brand-wordmark,
+.brand-header .brand-desktop-links { color: #202020; }
+.brand-header .brand-wordmark span { color: #1198c7; }
+.brand-header .brand-menu summary { color: #202020; border-color: #dedede; }
+
+.brand-stage { background: #fff; padding: 0; }
+.brand-stage .hero-shell { width: 100%; max-width: none; }
+.brand-stage .hero-panel.hero-panel-reference {
+  position: relative;
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  overflow: hidden;
+  background: #fff;
+  color: #1f1f1f;
+}
+.brand-stage .hero-panel.hero-panel-reference::before { content: none; }
+.brand-stage .hero-panel-reference .hero-scene {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  height: clamp(380px, 33vw, 560px);
+  min-height: 0;
+  overflow: hidden;
+  background: linear-gradient(180deg,
+    #ffffff 0%,
+    #ffffff 19%,
+    #f8fcfe 32%,
+    #c6f1ff 50%,
+    #8adefb 73%,
+    #72d7f7 100%);
+}
+
+.hero-panel-reference .hero-scene .hero-title-editorial {
+  position: absolute;
+  inset: 0;
+  display: block;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(43px, 4.7vw, 82px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.085em;
+  color: #222;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+.hero-panel-reference .hero-scene .hero-title-name,
+.hero-panel-reference .hero-scene .hero-title-role {
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+  max-width: none;
+  text-shadow: none;
+  animation: brand-title-in 600ms ease-out both;
+}
+.hero-panel-reference .hero-scene .hero-title-name {
+  top: 18%;
+  left: 16%;
+  z-index: 1;
+}
+.hero-panel-reference .hero-scene .hero-title-role {
+  top: 51%;
+  left: 52%;
+  z-index: 4;
+  animation-delay: 100ms;
+}
+.hero-panel-reference .hero-scene .hero-portrait {
+  position: absolute;
+  z-index: 3;
+  top: 22%;
+  bottom: auto;
+  left: 36%;
+  display: block;
+  width: min(27%, 410px);
+  height: auto;
+  margin: 0;
+  pointer-events: none;
+}
+.hero-panel-reference .hero-scene .hero-portrait > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: top center;
+  filter: none;
+}
+.hero-panel-reference .hero-scene .hero-profile {
+  position: absolute;
+  z-index: 5;
+  top: 12%;
+  left: 59%;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: auto;
+  max-width: 35%;
+  margin: 0;
+  color: #202020;
+  font-family: Arial, sans-serif;
+}
+.hero-panel-reference .hero-scene .hero-profile-avatar {
+  display: block;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #db399e;
+  border-radius: 50%;
+  padding: 2px;
+  overflow: hidden;
+  background: #111;
+}
+.hero-panel-reference .hero-scene .hero-profile-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  border-radius: 50%;
+}
+.hero-panel-reference .hero-scene .hero-profile-copy {
+  display: grid;
+  align-content: center;
+  gap: 0;
+  line-height: 1.2;
+}
+.hero-panel-reference .hero-scene .hero-profile-copy strong {
+  display: block;
+  font-size: clamp(10px, .85vw, 14px);
+  font-weight: 700;
+  letter-spacing: -.015em;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.hero-panel-reference .hero-scene .hero-profile-copy small {
+  display: block;
+  color: #565656;
+  font-size: clamp(7px, .6vw, 10px);
+  font-weight: 400;
+  white-space: nowrap;
+}
+.hero-panel-reference .hero-scene .hero-verified { color: #247fff; }
+.hero-panel-reference .hero-scene .hero-figma-sticker {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: clamp(42px, 5.2vw, 62px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 11px;
+  border: 1px solid #878787;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 5px 18px #1616160d;
+}
+.hero-panel-reference .hero-scene .hero-figma-sticker-left { top: 48%; left: 16%; }
+.hero-panel-reference .hero-scene .hero-figma-sticker-right { top: 35%; left: 69%; }
+.hero-panel-reference .hero-scene .hero-figma-mark {
+  width: 22px; height: 33px; display: grid;
+  grid-template-columns: repeat(2, 11px);
+  grid-template-rows: repeat(3, 11px);
+}
+.hero-panel-reference .hero-scene .hero-figma-mark i {
+  display: block; width: 11px; height: 11px;
+}
+.hero-panel-reference .hero-scene .hero-figma-mark i:nth-child(1) { grid-area: 1/1; background:#f24e1e; border-radius:6px 0 0 6px; }
+.hero-panel-reference .hero-scene .hero-figma-mark i:nth-child(2) { grid-area: 1/2; background:#ff7262; border-radius:0 6px 6px 0; }
+.hero-panel-reference .hero-scene .hero-figma-mark i:nth-child(3) { grid-area: 2/1; background:#a259ff; border-radius:6px 0 0 6px; }
+.hero-panel-reference .hero-scene .hero-figma-mark i:nth-child(4) { grid-area: 2/2; background:#1abcfe; border-radius:50%; }
+.hero-panel-reference .hero-scene .hero-figma-mark i:nth-child(5) { grid-area: 3/1; background:#0acf83; border-radius:6px 0 6px 6px; }
+.hero-panel-reference .hero-information,
+.hero-panel-reference .hero-project-link {
+  background: #171717;
+  color: #fff;
+  width: 100%;
+  margin: 0;
+  padding-inline: max(28px, calc((100vw - 1200px) / 2));
+  border-color: #424242;
+}
+.hero-panel-reference .hero-information { padding-block: 52px 36px; }
+.hero-panel-reference .hero-headline,
+.hero-panel-reference .hero-description,
+.hero-panel-reference .hero-complementary { color: #fff; }
+.hero-panel-reference .hero-project-link { padding-block: 20px 36px; }
+.hero-panel-reference .brand-action { background: #72d7f7; color: #161616; border-color: #72d7f7; }
+.hero-panel-reference .brand-action-outline { background: transparent; color: #fff; border-color: #fff; }
+
+@media (max-width: 760px) {
+  .brand-stage .hero-panel-reference .hero-scene { height: clamp(360px, 69vw, 500px); }
+  .hero-panel-reference .hero-scene .hero-title-editorial { font-size: clamp(40px, 5.8vw, 54px); }
+  .hero-panel-reference .hero-scene .hero-title-name { top: 21%; left: 9%; }
+  .hero-panel-reference .hero-scene .hero-title-role { top: 57%; left: 50%; }
+  .hero-panel-reference .hero-scene .hero-portrait { top: 25%; left: 31%; width: 38%; }
+  .hero-panel-reference .hero-scene .hero-profile { top: 7%; left: auto; right: 6%; max-width: 60%; }
+  .hero-panel-reference .hero-scene .hero-figma-sticker-left { top: 52%; left: 9%; }
+  .hero-panel-reference .hero-scene .hero-figma-sticker-right { top: 39%; left: auto; right: 10%; }
+  .hero-panel-reference .hero-information { grid-template-columns: 1fr; padding: 36px 24px 26px; gap: 20px; }
+  .hero-panel-reference .hero-project-link { padding: 18px 24px 30px; }
+}
+@media (max-width: 480px) {
+  .brand-stage .hero-panel-reference .hero-scene { height: 410px; }
+  .hero-panel-reference .hero-scene .hero-title-editorial { font-size: clamp(30px, 9vw, 41px); }
+  .hero-panel-reference .hero-scene .hero-title-name { top: 27%; left: 5%; }
+  .hero-panel-reference .hero-scene .hero-title-role { top: 69%; left: 43%; }
+  .hero-panel-reference .hero-scene .hero-portrait { top: 35%; left: 21%; width: 58%; }
+  .hero-panel-reference .hero-scene .hero-profile { top: 7%; right: 5%; }
+  .hero-panel-reference .hero-scene .hero-figma-sticker-left { top: 52%; left: 6%; }
+  .hero-panel-reference .hero-scene .hero-figma-sticker-right { top: 40%; right: 5%; }
+  .hero-panel-reference .hero-information { padding: 34px 20px 26px; }
+  .hero-panel-reference .hero-project-link { padding-inline: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-panel-reference .hero-scene * { animation: none !important; }
+}
