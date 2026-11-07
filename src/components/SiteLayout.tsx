@@ -1,25 +1,6 @@
 import type { ReactNode } from 'react';
-import { navigation, site } from '../data/site';
-
-function SiteHeader() {
-  return (
-    <>
-      <a className="skip" href="#conteudo">Pular para o conteúdo</a>
-      <header>
-        <nav className="wrap" aria-label="Menu principal">
-          <a className="logo" href="#" aria-label="Edmarcio, início">
-            edmarcio<span>®</span>
-          </a>
-          <div className="links">
-            {navigation.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
-            ))}
-          </div>
-        </nav>
-      </header>
-    </>
-  );
-}
+import { site } from '../data/site';
+import { Navigation } from './Navigation';
 
 function SiteFooter() {
   return (
@@ -38,7 +19,7 @@ function SiteFooter() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <SiteHeader />
+      <Navigation />
       <main id="conteudo">{children}</main>
       <SiteFooter />
     </>
