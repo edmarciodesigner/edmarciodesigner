@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ProjectVisual } from '../components/SelectedWorks';
+import { ResponsiveImage } from '../components/ResponsiveImage';
 import { getProjectBySlug, getProjectCategoryLabel, type ProjectImage } from '../data/projects';
 
 function GalleryImage({ image }: { image: ProjectImage }) {
@@ -10,13 +11,13 @@ function GalleryImage({ image }: { image: ProjectImage }) {
       {failedSource === image.src ? (
         <p className="project-detail-image-error">Imagem indisponível: {image.alt}</p>
       ) : (
-        <img
+        <ResponsiveImage
           src={image.src}
           alt={image.alt}
           width={image.width}
           height={image.height}
-          loading="lazy"
-          decoding="async"
+          srcSet={image.srcSet}
+          sizes={image.sizes ?? '(max-width: 640px) calc(100vw - 24px), (max-width: 1328px) calc(100vw - 48px), 1280px'}
           onError={() => setFailedSource(image.src)}
         />
       )}
@@ -31,19 +32,43 @@ export function ProjectPage({ slug }: { slug: string }) {
 
   useEffect(() => {
     const previousTitle = document.title;
-    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    const previousDescription = description?.content;
-    document.title = project
+    const restoreMetadata: Array<() => void> = [];
+    const setMetadata = (attribute: 'name' | 'property', key: string, value: string) => {
+      const existing = document.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+      const element = existing ?? document.createElement('meta');
+      const previousContent = element.getAttribute('content');
+      element.setAttribute(attribute, key);
+      element.setAttribute('content', value);
+      if (!existing) document.head.appendChild(element);
+
+      restoreMetadata.push(() => {
+        if (!existing) {
+          element.remove();
+        } else if (previousContent === null) {
+          element.removeAttribute('content');
+        } else {
+          element.setAttribute('content', previousContent);
+        }
+      });
+    };
+
+    const title = project
       ? `${project.title}${project.kind === 'placeholder' ? ' · Placeholder' : ''} | Edmarcio Oliveira`
       : 'Projeto não encontrado | Edmarcio Oliveira';
-    if (description) {
-      description.content = project?.description ?? 'Projeto não encontrado. Volte à galeria de Edmarcio Oliveira para explorar os itens disponíveis.';
-    }
+    const description = project?.description ?? 'Projeto não encontrado. Volte à galeria de Edmarcio Oliveira para explorar os itens disponíveis.';
+
+    document.title = title;
+    setMetadata('name', 'description', description);
+    setMetadata('property', 'og:title', title);
+    setMetadata('property', 'og:description', description);
+    setMetadata('name', 'twitter:title', title);
+    setMetadata('name', 'twitter:description', description);
+    setMetadata('name', 'robots', project?.kind === 'project' ? 'index, follow' : 'noindex, follow');
     titleRef.current?.focus({ preventScroll: true });
 
     return () => {
       document.title = previousTitle;
-      if (description && previousDescription !== undefined) description.content = previousDescription;
+      restoreMetadata.reverse().forEach((restore) => restore());
     };
   }, [slug, project]);
 
