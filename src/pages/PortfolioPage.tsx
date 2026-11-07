@@ -1,11 +1,10 @@
 import { Fragment } from 'react';
 import { SiteLayout } from '../components/SiteLayout';
 import { Hero } from '../components/Hero';
+import { Collaborations, Contact, Services } from '../components/InstitutionalSections';
 import {
   processSteps,
   projectDemonstrations,
-  services,
-  site,
   specialties,
 } from '../data/site';
 
@@ -17,33 +16,6 @@ function HeroSection() {
         {specialties.map((specialty) => <span key={specialty}>{specialty}</span>)}
       </div>
     </>
-  );
-}
-
-function ServicesSection() {
-  return (
-    <section id="servicos">
-      <div className="wrap">
-        <div className="section-head">
-          <div>
-            <div className="tag">01 / O que eu faço</div>
-            <h2>Design com intenção.<br />Em cada ponto de contato.</h2>
-          </div>
-          <p className="muted">
-            Da primeira impressão à presença digital, uma comunicação que faz sentido para o seu negócio.
-          </p>
-        </div>
-        <div className="services">
-          {services.map((service) => (
-            <article className="service" key={service.number}>
-              <span className="number">{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -111,42 +83,15 @@ function ProcessSection() {
   );
 }
 
-function ContactSection() {
-  return (
-    <section className="contact" id="contato">
-      <div className="wrap">
-        <div className="contact-inner">
-          <div>
-            <div className="tag">Vamos tirar sua ideia do papel?</div>
-            <h2>O próximo projeto<br />pode ser o seu.</h2>
-            <p>{site.contact.description}</p>
-          </div>
-          <a
-            className="btn"
-            href={site.contact.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {site.contact.label}
-          </a>
-        </div>
-        <details>
-          <summary>Atendimento e próximos passos</summary>
-          <p>{site.contact.nextSteps}</p>
-        </details>
-      </div>
-    </section>
-  );
-}
-
 export function PortfolioPage() {
   return (
     <SiteLayout>
       <HeroSection />
-      <ServicesSection />
+      <Services />
       <ProjectsSection />
       <ProcessSection />
-      <ContactSection />
+      <Collaborations />
+      <Contact />
     </SiteLayout>
   );
 }
