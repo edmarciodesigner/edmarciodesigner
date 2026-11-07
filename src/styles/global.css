@@ -540,3 +540,85 @@
     translate: none !important;
   }
 }
+
+/* Etapa 7: reflow sem esconder overflow da página ou cortar conteúdo. */
+#conteudo,
+.institutional-content,
+.institutional-about-grid > div,
+.institutional-about-portrait,
+.section-head > div,
+.contact-inner > div,
+.institutional-footer-top > *,
+.process > div,
+.steps {
+  min-width: 0;
+}
+
+.process.wrap {
+  width: min(1280px, calc(100% - 48px));
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.institutional-section :is(h3, p, li),
+.institutional-eyebrow,
+.institutional-footer :is(p, a, span),
+.process :is(h2, p, strong),
+.institutional-contact-details summary {
+  overflow-wrap: anywhere;
+}
+
+.strip > span {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.institutional-channels a > span:first-child {
+  min-width: 0;
+}
+
+.institutional-channels a > span:last-child {
+  flex-shrink: 0;
+}
+
+.institutional-section :focus-visible {
+  outline: 3px solid var(--brand-ink, #222222);
+  outline-offset: 5px;
+}
+
+.institutional-about :focus-visible,
+.institutional-collaborations :focus-visible {
+  outline-color: var(--brand-cyan, #67d2fe);
+}
+
+.institutional-channels a:focus-visible,
+.institutional-footer-top-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.institutional-contact-details summary:active,
+.institutional-channels a:active {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+@media (max-width: 760px) {
+  .process.wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .process.wrap {
+    width: calc(100% - 24px);
+  }
+}
+
+@media (forced-colors: active) {
+  .institutional-section :focus-visible,
+  .institutional-footer :focus-visible {
+    outline-color: Highlight;
+  }
+}
