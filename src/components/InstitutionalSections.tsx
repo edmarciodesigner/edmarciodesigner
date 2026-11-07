@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { services, site, specialties } from '../data/site';
+import { ResponsiveImage } from './ResponsiveImage';
 
 export function About() {
   const portrait = site.assets.aboutPortrait;
@@ -21,13 +22,11 @@ export function About() {
         </div>
         {portrait?.src && !photoFailed && (
           <figure className="institutional-about-portrait">
-            <img
+            <ResponsiveImage
               src={portrait.src}
               alt={portrait.alt}
               width={portrait.width}
               height={portrait.height}
-              loading="lazy"
-              decoding="async"
               onError={() => setPhotoFailed(true)}
             />
           </figure>
@@ -76,13 +75,11 @@ export function Collaborations() {
           <ul className="institutional-logo-list" aria-label="Marcas e colaborações">
             {collaborations.logos.map((logo) => (
               <li key={logo.id}>
-                <img
+                <ResponsiveImage
                   src={logo.src}
                   alt={logo.alt || logo.name}
                   width={logo.width}
                   height={logo.height}
-                  loading="lazy"
-                  decoding="async"
                 />
               </li>
             ))}
