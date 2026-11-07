@@ -1,12 +1,10 @@
-import { Fragment } from 'react';
+import { useEffect, useState } from 'react';
 import { SiteLayout } from '../components/SiteLayout';
 import { Hero } from '../components/Hero';
 import { Collaborations, Contact, Services } from '../components/InstitutionalSections';
-import {
-  processSteps,
-  projectDemonstrations,
-  specialties,
-} from '../data/site';
+import { SelectedWorks } from '../components/SelectedWorks';
+import { ProjectPage } from './ProjectPage';
+import { processSteps, specialties } from '../data/site';
 
 function HeroSection() {
   return (
@@ -16,46 +14,6 @@ function HeroSection() {
         {specialties.map((specialty) => <span key={specialty}>{specialty}</span>)}
       </div>
     </>
-  );
-}
-
-function ProjectsSection() {
-  return (
-    <section id="projetos">
-      <div className="wrap">
-        <div className="section-head">
-          <div>
-            <div className="tag">02 / Conceitos visuais</div>
-            <h2>Ideias que ganham forma.</h2>
-          </div>
-          <p className="muted">
-            Exemplos visuais de demonstração para explorar identidade e presença digital. Não representam trabalhos de clientes.
-          </p>
-        </div>
-        <div className="projects">
-          {projectDemonstrations.map((project) => (
-            <article key={project.id}>
-              <div className={`poster ${project.posterClass}`}>
-                <small>CONCEITO VISUAL / DEMONSTRAÇÃO</small>
-                <strong>
-                  {project.lines.map((line, index) => (
-                    <Fragment key={line}>
-                      {index > 0 && <br />}
-                      {line}
-                    </Fragment>
-                  ))}
-                </strong>
-                <small>{project.disciplines}</small>
-              </div>
-              <div className="project-caption">
-                <h3>{project.title}</h3>
-                <span>{project.status}</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -84,14 +42,28 @@ function ProcessSection() {
 }
 
 export function PortfolioPage() {
+  const [projectSlug, setProjectSlug] = useState(() => new URLSearchParams(window.location.search).get('projeto'));
+
+  useEffect(() => {
+    const updateLocation = () => setProjectSlug(new URLSearchParams(window.location.search).get('projeto'));
+    window.addEventListener('popstate', updateLocation);
+    return () => window.removeEventListener('popstate', updateLocation);
+  }, []);
+
   return (
     <SiteLayout>
-      <HeroSection />
-      <Services />
-      <ProjectsSection />
-      <ProcessSection />
-      <Collaborations />
-      <Contact />
+      {projectSlug !== null ? (
+        <ProjectPage slug={projectSlug} />
+      ) : (
+        <>
+          <HeroSection />
+          <Services />
+          <SelectedWorks />
+          <ProcessSection />
+          <Collaborations />
+          <Contact />
+        </>
+      )}
     </SiteLayout>
   );
 }
