@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { site } from '../data/site';
+import { About } from './InstitutionalSections';
 
 export function Hero() {
   const { hero, assets, identity } = site;
@@ -68,10 +69,7 @@ export function Hero() {
             <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <div className="hero-about" id="sobre">
-          <p className="hero-about-label">{hero.aboutLabel}</p>
-          <p className="hero-about-text">{site.introduction}</p>
-        </div>
+        <About />
       </div>
     </div>
   );
