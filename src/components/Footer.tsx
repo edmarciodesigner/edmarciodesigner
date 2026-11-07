@@ -1,11 +1,13 @@
 import { site } from '../data/site';
 
 export function Footer() {
+  const isProjectPage = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('projeto');
+
   return (
     <footer className="institutional-footer">
       <div className="institutional-content">
         <div className="foot institutional-footer-top">
-          <a className="brand-wordmark" href="#home" aria-label={`${site.name}, início`}>
+          <a className="brand-wordmark" href={isProjectPage ? './#home' : '#home'} aria-label={`${site.name}, início`}>
             {site.identity.wordmark}
             <span>{site.identity.discipline}</span>
           </a>
