@@ -8,6 +8,7 @@
 <title>Edmarcio Oliveira · Identidade visual e design gráfico</title>
 <link rel="stylesheet" href="./src/styles/global.css">
 <link rel="stylesheet" href="./src/styles/brand.css">
+<link rel="stylesheet" href="./src/styles/projects.css">
 </head>
 <body>
 <div id="app">
@@ -134,7 +135,75 @@
     </ol>
   </div>
 </section>
-<section id="projetos"><div class="wrap"><div class="section-head"><div><div class="tag">02 / Conceitos visuais</div><h2>Ideias que ganham forma.</h2></div><p class="muted">Exemplos visuais de demonstração para explorar identidade e presença digital. Não representam trabalhos de clientes.</p></div><div class="projects"><article><div class="poster poster-one"><small>CONCEITO VISUAL / DEMONSTRAÇÃO</small><strong>FORMA<br>QUE<br>MARCA.</strong><small>IDENTIDADE · COR · EXPRESSÃO ↗</small></div><div class="project-caption"><h3>Identidade em destaque</h3><span>Projeto ilustrativo</span></div></article><article><div class="poster poster-two"><small>CONCEITO VISUAL / DEMONSTRAÇÃO</small><strong>FEITO<br>PARA<br>APARECER.</strong><small>CONTEÚDO · DESIGN · PRESENÇA ↗</small></div><div class="project-caption"><h3>Presença digital</h3><span>Projeto ilustrativo</span></div></article></div></div></section>
+<section class="selected-works" id="projetos" aria-labelledby="selected-works-title">
+  <div class="institutional-content">
+    <div class="section-head">
+      <div>
+        <p class="institutional-eyebrow">02 / PROJETOS SELECIONADOS</p>
+        <h2 id="selected-works-title">SELECTED WORK.</h2>
+      </div>
+      <div class="selected-work-intro">
+        <p>Projetos que transformam ideias em identidades marcantes.</p>
+        <p class="selected-work-note">Os itens disponíveis são placeholders. Trabalhos reais serão publicados após a inclusão dos materiais originais.</p>
+      </div>
+    </div>
+    <div class="selected-work-filters" role="group" aria-label="Filtrar projetos por categoria">
+      <button type="button" data-project-filter="all" aria-pressed="true" aria-controls="selected-work-grid">Todos</button>
+      <button type="button" data-project-filter="identidade-visual" aria-pressed="false" aria-controls="selected-work-grid">Identidade Visual</button>
+      <button type="button" data-project-filter="branding" aria-pressed="false" aria-controls="selected-work-grid">Branding</button>
+      <button type="button" data-project-filter="social-media" aria-pressed="false" aria-controls="selected-work-grid">Social Media</button>
+      <button type="button" data-project-filter="direcao-de-arte" aria-pressed="false" aria-controls="selected-work-grid">Direção de Arte</button>
+      <button type="button" data-project-filter="websites" aria-pressed="false" aria-controls="selected-work-grid">Websites</button>
+      <button type="button" data-project-filter="campanhas" aria-pressed="false" aria-controls="selected-work-grid">Campanhas</button>
+    </div>
+    <p class="selected-work-feedback" id="selected-work-feedback" role="status" aria-live="polite" aria-atomic="true">2 itens disponíveis.</p>
+    <div class="selected-work-grid" id="selected-work-grid">
+      <a class="selected-work-card" href="?projeto=identidade-demonstracao" data-project-slug="identidade-demonstracao" data-project-category="identidade-visual" data-project-description="Demonstração de composição tipográfica para identidade visual. Este placeholder não representa um trabalho realizado para um cliente.">
+        <div class="selected-work-card-top"><span>01 / Identidade Visual</span></div>
+        <div class="selected-work-visual selected-work-visual--cyan">
+          <div class="selected-work-art" aria-hidden="true">
+            <small>CONCEITO VISUAL / DEMONSTRAÇÃO</small>
+            <strong>FORMA<br>QUE<br>MARCA.</strong>
+            <small>Identidade Visual</small>
+          </div>
+        </div>
+        <div class="selected-work-caption">
+          <div>
+            <span class="selected-work-badge">PLACEHOLDER / DEMONSTRAÇÃO</span>
+            <h3>Identidade em destaque</h3>
+            <p data-project-category-label>Identidade Visual</p>
+          </div>
+          <span class="selected-work-link">VER PROJETO <span aria-hidden="true">↗</span></span>
+        </div>
+        <p class="selected-work-disclaimer">Demonstração visual. Não representa trabalho de cliente.</p>
+      </a>
+      <a class="selected-work-card" href="?projeto=presenca-demonstracao" data-project-slug="presenca-demonstracao" data-project-category="social-media" data-project-description="Demonstração de composição editorial para presença digital. Este placeholder não representa uma campanha ou um trabalho realizado para um cliente.">
+        <div class="selected-work-card-top"><span>02 / Social Media</span></div>
+        <div class="selected-work-visual selected-work-visual--graphite">
+          <div class="selected-work-art" aria-hidden="true">
+            <small>CONCEITO VISUAL / DEMONSTRAÇÃO</small>
+            <strong>FEITO<br>PARA<br>APARECER.</strong>
+            <small>Social Media</small>
+          </div>
+        </div>
+        <div class="selected-work-caption">
+          <div>
+            <span class="selected-work-badge">PLACEHOLDER / DEMONSTRAÇÃO</span>
+            <h3>Presença digital</h3>
+            <p data-project-category-label>Social Media</p>
+          </div>
+          <span class="selected-work-link">VER PROJETO <span aria-hidden="true">↗</span></span>
+        </div>
+        <p class="selected-work-disclaimer">Demonstração visual. Não representa trabalho de cliente.</p>
+      </a>
+    </div>
+    <div class="selected-work-empty" id="selected-work-empty" hidden>
+      <h3>Nenhum projeto disponível nesta categoria.</h3>
+      <p>Os trabalhos serão apresentados após a inclusão dos materiais reais.</p>
+      <button class="selected-work-reset" id="selected-work-reset" type="button">Ver todas as categorias ↗</button>
+    </div>
+  </div>
+</section>
 <section><div class="wrap process"><div><div class="tag">03 / Como trabalhamos</div><h2>Uma boa ideia começa<br>com uma boa conversa.</h2><p class="muted">Entender seu momento é o primeiro passo para construir uma solução visual relevante.</p></div><ol class="steps"><li><strong>01 — Entender</strong><p>Conversamos sobre seu negócio, público, referências e o objetivo do projeto.</p></li><li><strong>02 — Criar</strong><p>Desenvolvemos a direção visual e apresentamos a proposta para sua avaliação.</p></li><li><strong>03 — Colocar no mundo</strong><p>Com a aprovação, organizamos os materiais finais para as aplicações combinadas.</p></li></ol></div></section>
 <section class="institutional-section institutional-collaborations" aria-labelledby="collaborations-title">
   <div class="institutional-content">
@@ -170,6 +239,30 @@
     </details>
   </div>
 </section>
+<article class="project-detail" id="project-detail" aria-labelledby="project-page-title" hidden>
+  <div class="institutional-content">
+    <a class="project-detail-back" href="./#projetos">← VOLTAR À GALERIA</a>
+    <header class="project-detail-header">
+      <p class="institutional-eyebrow" id="project-page-eyebrow">PORTFÓLIO</p>
+      <p class="selected-work-badge" id="project-page-badge">PLACEHOLDER / DEMONSTRAÇÃO</p>
+      <h1 class="project-detail-title" id="project-page-title" tabindex="-1"></h1>
+      <p class="project-detail-description" id="project-page-description"></p>
+      <dl class="project-detail-meta" id="project-page-meta">
+        <div><dt>Categoria</dt><dd id="project-page-category"></dd></div>
+        <div><dt>Tipo</dt><dd>Demonstração visual; não é um trabalho de cliente.</dd></div>
+      </dl>
+    </header>
+    <figure class="project-detail-demo" id="project-page-demo">
+      <figcaption>Placeholder tipográfico. Não representa identidade visual, mockups ou aplicações de um cliente real.</figcaption>
+    </figure>
+    <aside class="project-detail-pending" id="project-page-pending" aria-labelledby="project-pending-title">
+      <h2 id="project-pending-title">Materiais pendentes.</h2>
+      <p>Esta página demonstra a apresentação de um projeto. Informações profissionais e imagens serão exibidas somente com materiais reais.</p>
+      <ul><li>Cliente</li><li>Desafio</li><li>Conceito criativo</li><li>Resultados</li><li>Aplicações</li><li>Identidade visual, mockups e galeria de imagens</li></ul>
+    </aside>
+    <a class="project-detail-back project-detail-back-bottom" href="./#projetos">← VOLTAR AOS PROJETOS SELECIONADOS</a>
+  </div>
+</article>
 </main>
 <footer class="institutional-footer">
   <div class="institutional-content">
@@ -189,6 +282,88 @@
 (() => {
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
+
+  // A versão sem build utiliza os cards estáticos como fonte dos placeholders.
+  // Manter estes dois registros sincronizados com src/data/projects.ts.
+  const cards = Array.from(document.querySelectorAll('[data-project-slug]'));
+  const filters = Array.from(document.querySelectorAll('[data-project-filter]'));
+  const feedback = document.getElementById('selected-work-feedback');
+  const empty = document.getElementById('selected-work-empty');
+  const reset = document.getElementById('selected-work-reset');
+  const cleanups = [];
+  const applyFilter = (category) => {
+    let count = 0;
+    cards.forEach((card) => {
+      const visible = category === 'all' || card.dataset.projectCategory === category;
+      card.hidden = !visible;
+      if (visible) count += 1;
+    });
+    filters.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.projectFilter === category));
+    });
+    const active = filters.find((button) => button.dataset.projectFilter === category);
+    if (feedback) {
+      feedback.textContent = `${count} ${count === 1 ? 'item disponível' : 'itens disponíveis'}${category !== 'all' && active ? ` em ${active.textContent}` : ''}.`;
+    }
+    if (empty) empty.hidden = count > 0;
+  };
+  filters.forEach((button) => {
+    const onClick = () => applyFilter(button.dataset.projectFilter || 'all');
+    button.addEventListener('click', onClick);
+    cleanups.push(() => button.removeEventListener('click', onClick));
+  });
+  if (reset) {
+    const resetFilter = () => {
+      applyFilter('all');
+      filters[0]?.focus();
+    };
+    reset.addEventListener('click', resetFilter);
+    cleanups.push(() => reset.removeEventListener('click', resetFilter));
+  }
+
+  const parameters = new URLSearchParams(window.location.search);
+  const detail = document.getElementById('project-detail');
+  const main = document.getElementById('conteudo');
+  if (parameters.has('projeto') && detail && main) {
+    const project = cards.find((card) => card.dataset.projectSlug === parameters.get('projeto'));
+    Array.from(main.children).forEach((child) => { child.hidden = child !== detail; });
+    document.querySelectorAll('.brand-header a[href^="#"], .institutional-footer .brand-wordmark[href^="#"]').forEach((link) => {
+      link.setAttribute('href', `./${link.getAttribute('href')}`);
+    });
+    const title = document.getElementById('project-page-title');
+    const description = document.getElementById('project-page-description');
+    const eyebrow = document.getElementById('project-page-eyebrow');
+    const demo = document.getElementById('project-page-demo');
+    if (project) {
+      const name = project.querySelector('h3')?.textContent || '';
+      const category = project.querySelector('[data-project-category-label]')?.textContent || '';
+      if (title) title.textContent = name;
+      if (description) description.textContent = project.dataset.projectDescription || '';
+      if (eyebrow) eyebrow.textContent = `PORTFÓLIO / ${category}`;
+      const categoryValue = document.getElementById('project-page-category');
+      if (categoryValue) categoryValue.textContent = category;
+      const visual = project.querySelector('.selected-work-visual');
+      if (visual && demo) demo.prepend(visual.cloneNode(true));
+      document.title = `${name} · Placeholder | Edmarcio Oliveira`;
+    } else {
+      detail.classList.add('project-detail-not-found');
+      if (title) title.textContent = 'Projeto não encontrado.';
+      if (description) description.textContent = 'Este endereço não corresponde a um projeto disponível. Volte à galeria para explorar os itens publicados.';
+      if (eyebrow) eyebrow.textContent = 'PROJETO INDISPONÍVEL';
+      ['project-page-badge', 'project-page-meta', 'project-page-demo', 'project-page-pending'].forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) element.hidden = true;
+      });
+      document.title = 'Projeto não encontrado | Edmarcio Oliveira';
+    }
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription && description) metaDescription.content = description.textContent || '';
+    title?.focus({ preventScroll: true });
+  }
+
+  window.addEventListener('portfolio:mount', () => {
+    cleanups.forEach((cleanup) => cleanup());
+  }, { once: true });
 
   const menu = document.querySelector('.brand-menu');
   if (!(menu instanceof HTMLDetailsElement)) return;
