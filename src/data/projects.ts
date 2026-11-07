@@ -10,10 +10,16 @@ export const projectCategories = [
 export type ProjectCategoryId = typeof projectCategories[number]['id'];
 
 export interface ProjectImage {
+  /** Caminho local ou URL permanente de um arquivo real; preferir WebP ou AVIF. */
   readonly src: string;
   readonly alt: string;
+  /** Dimensões intrínsecas positivas, em pixels, para reservar a proporção. */
   readonly width: number;
   readonly height: number;
+  /** Variantes existentes do mesmo recorte, com descritores de largura: arquivo.webp 640w. */
+  readonly srcSet?: string;
+  /** Opcional: largura de exibição; os componentes fornecem padrões para card e galeria. */
+  readonly sizes?: string;
   readonly caption?: string;
 }
 
